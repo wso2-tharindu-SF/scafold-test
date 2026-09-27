@@ -24,6 +24,10 @@ service / on ep0 {
         int recordCount = records.length();
         log:printInfo("computed average score", recordCount = recordCount);
 
+        if recordCount == 0 {
+            return {average: 0};
+        }
+
         int sum = 0;
         foreach service2:Record rec in records {
             sum += rec.score;
