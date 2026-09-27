@@ -29,13 +29,13 @@ the API Consumer or any other external caller.
 ## User Stories
 
 1. As an API Consumer, I want to request the average score from Service1, so
- that I get the aggregated figure without fetching and computing it myself.
+that I get the aggregated figure without fetching and computing it myself.
 2. As an API Consumer, I want a request to a path Service1 does not serve to
- return a structured 404 body, so that I can distinguish an unsupported path
- from any other outcome.
+return a structured 404 body, so that I can distinguish an unsupported path
+from any other outcome.
 3. As an Operator, I want to switch Service2 between full mode and empty mode
- through its internal operations endpoint, so that I can control which
- catalog state Service2 serves next.
+through its internal operations endpoint, so that I can control which
+catalog state Service2 serves next.
 
 ## Product Decisions
 
