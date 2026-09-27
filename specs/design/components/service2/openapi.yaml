@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Service2 API
+  version: 0.1.0
+servers:
+  - url: /
+paths:
+  /catalog:
+    get:
+      operationId: getCatalog
+      summary: The catalog of scored records Service2 currently serves
+      responses:
+        '200':
+          description: The current catalog; empty when Service2 is in empty mode
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catalog'
+  /catalog-mode:
+    put:
+      operationId: setCatalogMode
+      summary: Switch Service2 between full mode and empty mode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogMode'
+      responses:
+        '200':
+          description: The catalog mode now in effect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogMode'
+        '400':
+          description: The requested mode is not recognized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Record:
+      type: object
+      required: [id, name, score]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        score:
+          type: integer
+    Catalog:
+      type: object
+      required: [count, records]
+      properties:
+        count:
+          type: integer
+          description: Number of records in the catalog
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+    CatalogMode:
+      type: object
+      required: [mode]
+      properties:
+        mode:
+          type: string
+          enum: [full, empty]
+          description: full serves the ten seeded records; empty serves no records
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+          description: HTTP or application error code
+        message:
+          type: string
+          description: short human-readable label
+        description:
+          type: string
+          description: detailed explanation
+        moreInfo:
+          type: string
+          description: URI to documentation

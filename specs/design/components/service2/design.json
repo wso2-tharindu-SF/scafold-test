@@ -1,0 +1,14 @@
+{
+  "name": "service2",
+  "type": "service",
+  "version": "0.1.0",
+  "language": "Ballerina",
+  "buildpack": "docker",
+  "appPath": "service2",
+  "entrypoint": "deployment/service",
+  "exposure": "intranet",
+  "dependencies": [],
+  "description": "Holds the fixed scored-record catalog and serves it to Service1 on request. Exposes an internal-only operations endpoint, reachable solely through the org intranet gateway, that switches the catalog between full mode (the ten seeded records) and empty mode (no records). Starts in full mode. Never reachable by the API Consumer, and performs no aggregation itself.",
+  "stories": [3],
+  "skillsPinned": ["openapi-conventions", "ballerina"]
+}

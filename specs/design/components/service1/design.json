@@ -1,0 +1,16 @@
+{
+  "name": "service1",
+  "type": "service",
+  "version": "0.1.0",
+  "language": "Ballerina",
+  "buildpack": "docker",
+  "appPath": "service1",
+  "entrypoint": "deployment/service",
+  "exposure": "internet",
+  "dependencies": [
+    { "kind": "component", "name": "service2" }
+  ],
+  "description": "Public-facing API that computes and returns the average score of Service2's current catalog as a whole number, discarding any remainder. Serves GET /average-score, and answers any path it does not serve with a structured 404 body. Holds no catalog data of its own and never mutates Service2's state.",
+  "stories": [1, 2],
+  "skillsPinned": ["openapi-conventions", "ballerina"]
+}

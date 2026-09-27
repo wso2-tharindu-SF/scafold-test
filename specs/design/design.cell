@@ -1,0 +1,9 @@
+title scafold-test
+
+component service1 as "Service1" service
+component service2 as "Service2" service
+
+north -> service1
+west -> service2
+
+service1 -> service2
