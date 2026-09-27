@@ -7,10 +7,29 @@
   "appPath": "service1",
   "entrypoint": "deployment/service",
   "exposure": "internet",
-  "dependencies": [
-    { "kind": "component", "name": "service2" }
+  "stories": [
+    1,
+    2
   ],
   "description": "Public-facing API that computes and returns the average score of Service2's current catalog as a whole number, discarding any remainder. Serves GET /average-score, and answers any path it does not serve with a structured 404 body. Holds no catalog data of its own and never mutates Service2's state.",
-  "stories": [1, 2],
-  "skillsPinned": ["openapi-conventions", "ballerina"]
+  "dependencies": [
+    {
+      "kind": "component",
+      "name": "service2",
+      "wiring": {
+        "endpoint": {
+          "component": "scafold-test-service2",
+          "name": "http",
+          "visibility": "project",
+          "envBindings": {
+            "address": "SERVICE2_URL"
+          }
+        }
+      }
+    }
+  ],
+  "skillsPinned": [
+    "openapi-conventions",
+    "ballerina"
+  ]
 }
